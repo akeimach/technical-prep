@@ -8,30 +8,26 @@ const numWord = {
 
 
 intToWord = (integerIn) => {
+  console.log(parseInt(integerIn, 8));
+  console.log(parseInt(integerIn, 10));
   let input = Math.abs(integerIn);
-  let output = "";
+  let output = ((input === 0) ? (" zero") : (""));
   let iter = 0;
-
-  if (input === 0) output = " zero";
 
   while (input > 0) {
 
     const hundsPlace = input % 1000;
-
     if (hundsPlace > 0) { // if the current section is non-zero (ex. 89,XXX,910)
 
       const tensPlace = hundsPlace % 100;
-
       output = numWord.digits[Math.floor(hundsPlace / 100)] + // digit in the hundreds place
           ((hundsPlace > 100) ? (numWord.beyond[1]) : ("")) + // add the word "hundred" or not
           ((tensPlace < 20) ? (numWord.digits[tensPlace]) : // add a weird word like "twelve" or...
             (numWord.tens[Math.floor(tensPlace / 10)] + numWord.digits[hundsPlace % 10])) + // build the normal tens + ones word
           numWord.beyond[iter] + output; // add quantifier like "million" depending on iteration number
-
     }
 
-    if ((iter === 0) && (input > 100)) iter++;
-    iter++;
+    iter = (((iter === 0) && (input > 100)) ? (iter += 2) : (iter++));
     input = Math.floor(input / 1000); // get the next section of 3 digits
   }
   return ((integerIn < 0) ? (" negative" + output) : (output));
