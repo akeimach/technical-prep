@@ -8,9 +8,7 @@ const numWord = {
 
 
 intToWord = (integerIn) => {
-  console.log(parseInt(integerIn, 8));
-  console.log(parseInt(integerIn, 10));
-  let input = Math.abs(integerIn);
+  let input = Math.abs(parseInt(integerIn, 10));
   let output = ((input === 0) ? (" zero") : (""));
   let iter = 0;
 
