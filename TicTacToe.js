@@ -5,7 +5,14 @@ class Game { // first thing because not hoisted
     this.row = row;
     this.col = col;
     this.maxPlays = row * col;
-    this.board = [[' ',' ',' '], [' ',' ',' '], [' ',' ',' ']]; // this is 3x3, TODO: make dynamic
+    this.board = [];
+    for (let c = 0; c < col; c++) {
+      let emptyRow = [];
+      for (let r = 0; r < row; r++) {
+        emptyRow.push(' ');
+      }
+      this.board.push(emptyRow);
+    }
   }
 
   get boardState() {
@@ -20,12 +27,12 @@ class Game { // first thing because not hoisted
 }
 
 
-const game = new Game(3, 3);
-for (let i = 0; i < game.maxPlays; i++) {
+const game = new Game(4, 4);
+// for (let i = 0; i < game.maxPlays; i++) {
   game.boardState;
   // game.makePlay;
   // game.checkWin;
-}
+// }
 
 
 
