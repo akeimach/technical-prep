@@ -59,12 +59,6 @@ class Game { // first thing because not hoisted
           }
         }
         this.boardState();
-        for (let r = 0; r < this.size; r++) {
-          for (let c = 0; c < this.size; c++) {
-            this.boardSquare[r][c] = this.boardFlat[counter];
-            counter++;
-          }
-        }
       }
       else {
         this.makePlay();
