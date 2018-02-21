@@ -37,14 +37,29 @@ class Game { // first thing because not hoisted
   }
 
   checkWin() {
+
+    // first check forward diagonal
     let total = 0;
-    // first check diagonals
     for (let d = 0; d < this.size; d++) {
       total += this.boardSquare[d][d].value;
     }
+    if (Math.abs(total) === this.size) {
+      return true;
+    }
+
+    // check backward diagonal
+    total = 0;
+    for (let d = 0; d < this.size; d++) {
+      total += this.boardSquare[(this.size - 1) - d][d].value;
+    }
+    if (Math.abs(total) === this.size) {
+      return true;
+    }
+    
+
+
     console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"+total+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     if (Math.abs(total) === this.size) {
-      console.log("\n\n\n\nWin!\n\n\n\n");
       return true;
     }
     return false;
@@ -74,7 +89,8 @@ class Game { // first thing because not hoisted
         }
         // this.printBoard();
         if (this.checkWin()) {
-          return true;
+          console.log((((this.currentPlay - 1) % 2) === 0) ? 'Player o wins' : 'Player x wins');
+          return true; // a win was found
         }
       }
       this.makePlay();
