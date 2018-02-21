@@ -38,19 +38,21 @@ class Game { // first thing because not hoisted
 
   checkWin() {
     let total = 0;
-    for (let r = 0; r < this.size; r++) {
-      for (let c = 0; c < this.size; c++) {
-        total += this.boardSquare[r][c];
-      }
+    // first check diagonals
+    for (let d = 0; d < this.size; d++) {
+      total += this.boardSquare[d][d].value;
     }
+    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"+total+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     if (Math.abs(total) === this.size) {
-      console.log("Win!");
+      console.log("\n\n\n\nWin!\n\n\n\n");
+      return true;
     }
+    return false;
   }
 
   makePlay() {
     const prompt = new Prompt({
-      name: 'board',
+      name: ((this.currentPlay % 2) === 0) ? 'Player o' : 'Player x',
       choices: this.boardFlat
     });
 
@@ -71,7 +73,9 @@ class Game { // first thing because not hoisted
           }
         }
         // this.printBoard();
-        this.checkWin();
+        if (this.checkWin()) {
+          return true;
+        }
       }
       this.makePlay();
     });
