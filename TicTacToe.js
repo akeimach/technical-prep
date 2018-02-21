@@ -36,6 +36,10 @@ class Game { // first thing because not hoisted
     }
   }
 
+  checkWin() {
+
+  }
+
   makePlay() {
     const prompt = new Prompt({
       name: 'board',
@@ -43,7 +47,7 @@ class Game { // first thing because not hoisted
     });
 
     prompt.run().then(answer => {
-      // console.log(prompt.options.choices.choices);
+      
       const position = prompt.options.choices.position;
       // the position doesn't have a value yet
       if (this.boardFlat[position].value === 0) {
@@ -58,11 +62,10 @@ class Game { // first thing because not hoisted
             counter++;
           }
         }
-        this.printBoard();
+        // this.printBoard();
+        this.checkWin();
       }
-      else {
-        this.makePlay();
-      }
+      this.makePlay();
     });
   }
 }
