@@ -37,7 +37,15 @@ class Game { // first thing because not hoisted
   }
 
   checkWin() {
-
+    let total = 0;
+    for (let r = 0; r < this.size; r++) {
+      for (let c = 0; c < this.size; c++) {
+        total += this.boardSquare[r][c];
+      }
+    }
+    if (Math.abs(total) === this.size) {
+      console.log("Win!");
+    }
   }
 
   makePlay() {
