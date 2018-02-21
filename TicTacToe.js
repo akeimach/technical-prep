@@ -56,12 +56,28 @@ class Game { // first thing because not hoisted
       return true;
     }
     
-
-
-    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"+total+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    if (Math.abs(total) === this.size) {
-      return true;
+    total = 0;
+    for (let r = 0; r < this.size; r++) {
+      for (let c = 0; c < this.size; c++) {
+        total += this.boardSquare[r][c].value;
+      }
+      if (Math.abs(total) === this.size) {
+        return true;
+      }
+      total = 0;
     }
+
+    total = 0;
+    for (let c = 0; c < this.size; c++) {
+      for (let r = 0; r < this.size; r++) {
+        total += this.boardSquare[r][c].value;
+      }
+      if (Math.abs(total) === this.size) {
+        return true;
+      }
+      total = 0;
+    }
+
     return false;
   }
 
