@@ -20,13 +20,10 @@ class Game { // first thing because not hoisted
       }
       this.boardSquare.push(row);
     }
-    this.boardSquare[2][2].name = 'x';
-    this.boardSquare[2][2].value = 1;
-    this.boardSquare[1][2].name = 'o';
-    this.boardSquare[1][2].value = -1;
   }
 
   printBoard() {
+    // this is for debugging
     for (let r = 0; r < this.size; r++) { // for each row
       for (let c = 0; c < this.size; c++) {
         if (c > 0 && c < this.size) process.stdout.write(' | ');
@@ -88,7 +85,6 @@ class Game { // first thing because not hoisted
             counter++;
           }
         }
-        // this.printBoard();
         if (this.checkWin()) {
           console.log((((this.currentPlay - 1) % 2) === 0) ? 'Player o wins' : 'Player x wins');
           return true; // a win was found
