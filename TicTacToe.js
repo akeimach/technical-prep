@@ -26,7 +26,7 @@ class Game { // first thing because not hoisted
     this.boardSquare[1][2].value = -1;
   }
 
-  boardState() {
+  printBoard() {
     for (let r = 0; r < this.size; r++) { // for each row
       for (let c = 0; c < this.size; c++) {
         if (c > 0 && c < this.size) process.stdout.write(' | ');
@@ -58,7 +58,7 @@ class Game { // first thing because not hoisted
             counter++;
           }
         }
-        this.boardState();
+        this.printBoard();
       }
       else {
         this.makePlay();
