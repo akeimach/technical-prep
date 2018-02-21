@@ -56,26 +56,18 @@ class Game { // first thing because not hoisted
       return true;
     }
     
-    total = 0;
-    for (let r = 0; r < this.size; r++) {
-      for (let c = 0; c < this.size; c++) {
-        total += this.boardSquare[r][c].value;
+    let totalHorizontal = 0;
+    let totalVertical = 0;
+    for (let x = 0; x < this.size; x++) {
+      for (let y = 0; y < this.size; y++) {
+        totalHorizontal += this.boardSquare[x][y].value;
+        totalVertical += this.boardSquare[y][x].value;
       }
-      if (Math.abs(total) === this.size) {
+      if ((Math.abs(totalHorizontal) === this.size) || (Math.abs(totalVertical) === this.size)) {
         return true;
       }
-      total = 0;
-    }
-
-    total = 0;
-    for (let c = 0; c < this.size; c++) {
-      for (let r = 0; r < this.size; r++) {
-        total += this.boardSquare[r][c].value;
-      }
-      if (Math.abs(total) === this.size) {
-        return true;
-      }
-      total = 0;
+      totalHorizontal = 0;
+      totalVertical = 0;
     }
 
     return false;
