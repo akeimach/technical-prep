@@ -38,21 +38,14 @@ class Game { // first thing because not hoisted
 
   checkWin() {
 
-    // first check forward diagonal
-    let total = 0;
+    // first check forward and backward diagonals
+    let totalForward = 0;
+    let totalBackward = 0;
     for (let d = 0; d < this.size; d++) {
-      total += this.boardSquare[d][d].value;
+      totalForward += this.boardSquare[d][d].value;
+      totalBackward += this.boardSquare[(this.size - 1) - d][d].value;
     }
-    if (Math.abs(total) === this.size) {
-      return true;
-    }
-
-    // check backward diagonal
-    total = 0;
-    for (let d = 0; d < this.size; d++) {
-      total += this.boardSquare[(this.size - 1) - d][d].value;
-    }
-    if (Math.abs(total) === this.size) {
+    if ((Math.abs(totalForward) === this.size) || (Math.abs(totalBackward) === this.size)) {
       return true;
     }
     
