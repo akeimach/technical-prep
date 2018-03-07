@@ -10,11 +10,14 @@
 // Find: 23
 
 const findNumber = (matrix, target) => {
+
   let low = 0;
   let high = matrix.length * matrix[0].length - 1;
+
   while (low <= high) {
 
-    let mid = low + Math.floor((high - low) / 2);
+    let mid = Math.floor((high + low) / 2);
+
     let row = Math.floor(mid / matrix.length) - 1; // -1 for 0th index
     if (row < 0) {
       row = 0;
@@ -45,3 +48,6 @@ const matrix = [
 findNumber(matrix, 23);
 findNumber(matrix, 1);
 findNumber(matrix, 45);
+findNumber(matrix, 31);
+
+
